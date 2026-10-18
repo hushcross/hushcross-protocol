@@ -1,0 +1,13 @@
+{
+  "name": "hushcross-contracts",
+  "private": true,
+  "version": "0.1.0",
+  "description": "HushCross vault contracts. Upstream Privacy Pools lives in vendor/ and is not an npm dependency.",
+  "license": "BUSL-1.1",
+  "dependencies": {
+    "@openzeppelin/contracts": "5.1.0",
+    "@openzeppelin/contracts-upgradeable": "5.0.2",
+    "@zk-kit/lean-imt.sol": "2.0.0",
+    "poseidon-solidity": "0.0.5"
+  }
+}

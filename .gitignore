@@ -1,0 +1,13 @@
+# Local dependencies and generated output
+**/node_modules/
+contracts/lib/
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+contracts/deployments/
+.env*
+**/.env*
+*.log
+.DS_Store
+__pycache__/
+*.pyc
