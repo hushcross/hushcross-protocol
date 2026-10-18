@@ -1,0 +1,26 @@
+[profile.default]
+src = "src"
+test = "test"
+script = "script"
+libs = ["lib", "node_modules"]
+auto_detect_remappings = false
+solc_version = "0.8.28"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+bytecode_hash = "none"
+cbor_metadata = false
+fs_permissions = [{ access = "read", path = "./" }, { access = "write", path = "./deployments" }]
+
+[fuzz]
+runs = 1000
+
+[fmt]
+line_length = 120
+tab_width = 2
+bracket_spacing = false
+int_types = "long"
+quote_style = "single"
+number_underscore = "thousands"
+multiline_func_header = "params_first_multi"
+sort_imports = true
