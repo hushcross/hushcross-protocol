@@ -107,6 +107,23 @@ Use the pinned dependencies and compiler described in [docs/verify.md](docs/veri
 
 Deployment sources retain the mainnet confirmation guard and omit local mock-deployment branches. [Contract reference](docs/contracts.md) explains the contracts and libraries. [FAQ](docs/faq.md) covers recovery, failures and the scope of this repository.
 
+## AI agents and Binance AI Pro
+
+The HushCross skill describes `hcx`, a JSON command-line client for planning BNB Chain vault, payment, gift, Launch, Book and Give workflows with Binance Agentic Wallet. The documentation also explains the separate Binance AI Pro web handoff.
+
+```sh
+npm install -g @binance/agentic-wallet
+npm install -g https://github.com/hushcross/hushcross-protocol/releases/download/hcx-v0.1.0/hushcross-hcx-0.1.0.tgz
+```
+
+Add the skill with `npx skills add hushcross/hushcross-protocol/skill`. See [AI agent documentation](https://hushcross.fun/docs#docs-agents) and the release's exact corresponding-source download. The skill and this documentation are CC BY 4.0; HushCross-authored hcx client code is GPL-3.0-or-later. Protocol-contract licensing is unchanged.
+
+Transactions and auto jobs must be planned first; execution requires `--confirm`. Every Binance wallet execution additionally requires the user to review the actual fresh preview and personally enter its request ID in a terminal. An AI must not enter it or create a PTY to bypass that step. Developer Mode is enabled only by the user in Binance App; understand its warning and turn it off when finished.
+
+**Outcome handling:** an `approval_unverified` or other unknown result may already have executed; reconcile it before any retry. Supported units and fees may make the actual amount lower than requested. Never share recovery words or passwords in chat. Public deposits, amounts and timing can still link activity.
+
+Unknown outcomes can be inspected with `hcx wallet pending` and checked with `wallet reconcile --request-id <id> --tx-hash <hash>`. Confirmation records a user-attested exact transaction, not provider proof, and never replays the transfer. `auto recover --id <job>` can restore a fully covered interrupted job locally without executing it. A not-sent discard requires separate verification and the user’s own terminal assertion; it does not cancel an App order.
+
 ## License
 
 HushCross-authored contracts marked `BUSL-1.1` are **source-available**, not offered under an unrestricted open-source license before their Change Date. Licensor: **HushCross**. Additional Use Grant: **None**. Change Date: **2028-10-18**. Change License: **GPL-2.0-or-later**. See [contract license](contracts/LICENSE).

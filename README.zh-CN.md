@@ -107,6 +107,23 @@ flowchart TD
 
 导出部署源码保留主网确认保护，移除了本地 Mock 部署分支。[合约说明](docs/contracts.md)介绍各合约与库，[常见问题](docs/faq.md)说明恢复、失败路径及本仓库范围。
 
+## AI 智能体与币安 AI Pro
+
+HushCross 技能介绍 `hcx` JSON 命令行客户端，用于通过币安 Agentic Wallet 规划 BNB Chain 金库、支付、红包、Launch、Book 和 Give 流程；文档也说明独立的币安 AI Pro 网页交接方式。
+
+```sh
+npm install -g @binance/agentic-wallet
+npm install -g https://github.com/hushcross/hushcross-protocol/releases/download/hcx-v0.1.0/hushcross-hcx-0.1.0.tgz
+```
+
+使用 `npx skills add hushcross/hushcross-protocol/skill` 添加技能。参见 [AI 智能体文档](https://hushcross.fun/docs#docs-agents)及该 Release 提供的精确对应源码下载。技能和本文档采用 CC BY 4.0；HushCross 自写 hcx 客户端代码采用 GPL-3.0-or-later；协议合约许可不变。
+
+交易和自动任务必须先规划，执行需 `--confirm`。每笔币安钱包执行还要求用户审阅当次新预览，并在终端亲自输入其 request ID；AI 不得代输或自开 PTY 绕过该步骤。开发者模式只能由用户在币安 App 自行开启，了解警告后使用，用完关闭。
+
+**结果处理：**`approval_unverified` 或其他未知结果可能已经执行，重试前必须核对。支持面额与费用可能使实际金额低于请求额。不要在聊天中分享恢复词或密码；公开入金、金额和时间仍可能关联活动。
+
+结果不明时可用 `hcx wallet pending` 查看记录，再用 `wallet reconcile --request-id <id> --tx-hash <hash>` 核验。确认后记录的是用户关联的精确交易，不是提供方订单证明，也不会重放转账。`auto recover --id <job>` 可用足额已有票据仅恢复本地中断任务，不执行任务；未发送 discard 必须另外核实并由用户亲自输入终端断言，它不会取消 App 订单。
+
 ## 许可证
 
 标为 `BUSL-1.1` 的 HushCross 自写合约在转换日期前属于 **source-available（源码公开）**，不是不受限制的开源授权。许可人：**HushCross**；额外使用授权：**None**；转换日期：**2028-10-18**；转换后许可证：**GPL-2.0-or-later**。详见[合约许可证](contracts/LICENSE)。
